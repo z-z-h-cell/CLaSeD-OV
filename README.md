@@ -4,20 +4,36 @@ Official code release for **CLaSeD-OV: Cross-Layer Semantic-Guided Decoding for 
 
 ## Abstract
 
-Open-vocabulary remote sensing semantic segmentation assigns pixel-level labels to arbitrary textual categories beyond predefined taxonomies. Although training-free methods based on frozen vision-language and segmentation foundation models have enabled dense open-vocabulary prediction, they still suffer from weak localization, coarse boundaries, and incomplete region coverage in complex geospatial scenes. This limitation mainly arises because query-aware semantic modeling is insufficiently strengthened before semantic-instance coordination, and is further amplified by dense small objects, weak boundaries, heterogeneous structures, and illumination variations. To address these challenges, we propose CLaSeD-OV, a Cross-Layer Semantic-Guided Decoding framework for training-free open-vocabulary remote sensing segmentation.
-
-CLaSeD-OV reorganizes prompt-conditioned semantic and instance evidence into a unified query-wise inference process. Instead of static response-level fusion of decoupled predictions, it integrates spatially informative intermediate-layer representations with semantically rich final-layer representations to produce stronger semantic evidence for each query, which supports instance-centered prediction and improves the coordination between region-level completeness and object-level localization. To enhance structural fidelity, Laplacian-Guided High-Frequency Structural Refinement injects image-derived boundary cues into query-wise logits without trainable parameters. Multi-Exposure View Aggregation further improves photometric robustness by fusing query-level responses from exposure-diversified views.
-
-The framework requires no pixel-level annotation, parameter update, domain-specific retraining, or auxiliary external backbone. Extensive evaluations on 20 benchmarks demonstrate its effectiveness and generality. On twelve remote sensing semantic segmentation datasets, CLaSeD-OV achieves 47.7 average mIoU, outperforming frozen SAM 3 by 10.5 points and SegEarth-OV3 by 1.3 points, while generalizing to remote sensing extraction and natural-image segmentation.
+Open-vocabulary remote sensing semantic segmentation aims to assign pixel-level labels to arbitrary
+textual categories beyond predefined land-cover taxonomies. Recent training-free methods built on
+frozen vision-language and segmentation foundation models have enabled dense open-vocabulary
+prediction, while SAM 3-based variants further introduce prompt-conditioned semantic-instance
+coordination. However, in complex geospatial scenes, such coordination is still hindered by insufficient
+query-aware semantic modeling, leading to weak localization, coarse boundaries, and incomplete
+region coverage. These issues become more severe under dense small objects, ambiguous boundaries,
+heterogeneous structures, and illumination variations. To address these challenges, we propose
+CLaSeD-OV, a Cross-Layer Semantic-Guided Decoding framework for training-free open-vocabulary
+remote sensing segmentation. CLaSeD-OV reorganizes prompt-conditioned semantic and instance
+evidence into a unified query-wise inference process. Instead of static response-level fusion of
+decoupled predictions, it integrates spatially informative intermediate-layer representations with se-
+mantically rich final-layer representations to strengthen semantic evidence for each query, supporting
+instance-centered prediction and improving coordination between region-level completeness and
+object-level localization. To enhance structural fidelity, Laplacian-Guided High-Frequency Structural
+Refinement injects image-derived boundary cues into query-wise logits without trainable parameters,
+while Multi-Exposure View Aggregation improves photometric robustness by fusing responses from
+exposure-diversified views. The framework requires no pixel-level annotation, parameter update,
+domain-specific retraining, or auxiliary external backbone. Extensive evaluations on 20 benchmarks
+demonstrate effectiveness and generality. On twelve remote sensing semantic segmentation datasets,
+CLaSeD-OV achieves 47.7 average mIoU, outperforming frozen SAM 3 by 10.5 points and SegEarth-
+OV3 by 1.3 points, while generalizing to remote sensing extraction and natural-image segmentation.
 
 ## Highlights
 
-- Training-free open-vocabulary remote sensing semantic segmentation.
-- Cross-layer semantic-guided decoding for stronger query-wise evidence.
-- Boundary-aware structural refinement without parameter updates.
-- Multi-exposure aggregation for robust dense prediction.
-- Evaluated on 20 semantic, extraction, and natural-image benchmarks.
-
+• Training-free framework for open-vocabulary remote sensing segmentation.
+• Cross-layer decoding strengthens query-aware semantic evidence.
+• Structural refinement improves boundary-aware dense prediction.
+• Multi-exposure aggregation enhances photometric robustness.
+• Evaluations on 20 benchmarks demonstrate broad generalization.
 ## Method Overview
 
 <p align="center">
