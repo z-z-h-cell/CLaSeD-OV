@@ -1,0 +1,65 @@
+项目名称：CLaSeD-OV
+核验环境：Python 3.10 + PyTorch 2.4.0 + CUDA 12.1
+核验日期：2026-06-11
+
+一、核验结论
+
+原环境说明和 requirements.txt 偏向通用模板，包含 PyTorch 2.0+、CUDA 11.8 示例和较宽泛的 OpenMMLab 版本范围；这与当前项目实际使用的环境不完全一致。
+
+当前文件已按本机实际可运行环境固定版本。核心模块导入测试已通过：
+
+import clased_ov_segmentor, custom_datasets, custom_mass_transforms
+
+pip 依赖一致性检查已通过：
+
+python -m pip check
+
+二、已核验的基础环境
+
+Python: 3.10.20
+PyTorch: 2.4.0+cu121
+torchvision: 0.19.0+cu121
+CUDA Runtime: 12.1
+torch.cuda.is_available(): True
+
+三、当前项目评估/推理所需核心依赖
+
+mmengine==0.10.7
+mmcv==2.2.0
+mmsegmentation==1.2.2
+numpy==2.2.6
+opencv-python==4.13.0.92
+Pillow==12.0.0
+matplotlib==3.10.9
+openpyxl==3.1.5
+
+四、SAM 3 推理路径相关依赖
+
+huggingface-hub==0.25.2
+iopath==0.1.10
+ftfy==6.3.1
+regex==2026.4.4
+tqdm==4.65.2
+typing-extensions==4.15.0
+scipy==1.15.3
+pycocotools==2.0.11
+triton==3.0.0
+
+五、推荐安装步骤
+
+1. conda create -n clased-ov python=3.10 -y
+2. conda activate clased-ov
+3. pip install torch==2.4.0+cu121 torchvision==0.19.0+cu121 --index-url https://download.pytorch.org/whl/cu121
+4. pip install -U openmim
+5. mim install mmengine==0.10.7
+6. mim install mmcv==2.2.0
+7. pip install mmsegmentation==1.2.2
+8. pip install -r requirements.txt
+
+说明：mmcv 带有 CUDA/C++ 扩展，若直接 pip 安装失败，优先使用 OpenMMLab MIM 安装匹配版本。
+
+六、可选依赖说明
+
+当前 CLaSeD-OV 的评估入口主要使用 eval.py、clased_ov_segmentor.py、custom_datasets.py、custom_mass_transforms.py 和 sam3/model 相关推理代码。
+
+保留的 sam3/agent、sam3/train、sam3/eval 子目录中包含上游 SAM 3 的可选代理、训练和视频评测代码，这些路径可能需要 openai、submitit、torchmetrics、hydra-core、omegaconf 等额外依赖。它们不是当前 CLaSeD-OV 评估/推理流程的必要依赖，因此未写入主 requirements.txt。

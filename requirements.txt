@@ -1,0 +1,29 @@
+# Verified with Python 3.10, PyTorch 2.4.0, and CUDA 12.1
+# PyTorch CUDA 12.1 wheels
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+torch==2.4.0+cu121
+torchvision==0.19.0+cu121
+
+# OpenMMLab stack
+mmengine==0.10.7
+mmcv==2.2.0
+mmsegmentation==1.2.2
+
+# Core image and evaluation utilities
+numpy==2.2.6
+opencv-python==4.13.0.92
+Pillow==12.0.0
+matplotlib==3.10.9
+openpyxl==3.1.5
+
+# SAM 3 runtime dependencies used by the retained inference code
+huggingface-hub==0.25.2
+iopath==0.1.10
+ftfy==6.3.1
+regex==2026.4.4
+tqdm==4.65.2
+typing-extensions==4.15.0
+scipy==1.15.3
+pycocotools==2.0.11
+triton==3.0.0
